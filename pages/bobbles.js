@@ -25,10 +25,9 @@ const Bobbles = ({ data }) => {
 
     const updatedData = fetch(
       'https://demo-next-03-mongo.vercel.app/api/getBobbles'
-    );
-    const updatedResponse = await updatedData.json();
-
-    setBobbles(updatedResponse);
+    )
+      .then((res) => res.json())
+      .then((res) => setBobbles(res));
   };
 
   console.log(bobbles);
