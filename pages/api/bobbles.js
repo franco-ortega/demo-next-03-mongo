@@ -1,3 +1,3 @@
-export default async (req, res) => {
-  res.send({ hello: 'world' });
-};
+export default async function handler(req, res) {
+  res.json({ hello: 'world' });
+}
