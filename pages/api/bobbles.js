@@ -5,14 +5,22 @@ export default async function handler(req, res) {
 
   const db = client.db('demo-next-03-mongo');
 
-  // const data = await db.collection('bobbles').find({}).toArray();
-  // console.log(data);
-  const newBobble = req.query;
-  // console.log(req.method);
-  // console.log(newBobble);
-  const response = await db.collection('bobbles').insertOne(newBobble);
+  console.log('BOBBLE method: ', req.method);
 
-  console.log(response);
+  if (req.method === 'GET') {
+    console.log('GET');
+    const raw = await db.collection('bobbles').find({}).toArray();
 
-  res.json(response);
+    const data = await JSON.parse(JSON.stringify(raw));
+
+    res.json(data);
+  }
+
+  if (req.method === 'POST') {
+    console.log('POST');
+
+    const response = await db.collection('bobbles').insertOne(req.body);
+
+    res.json(response);
+  }
 }
