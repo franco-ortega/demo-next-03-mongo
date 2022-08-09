@@ -5,10 +5,7 @@ export default async function handler(req, res) {
 
   const db = client.db('demo-next-03-mongo');
 
-  console.log('BOBBLE method: ', req.method);
-
   if (req.method === 'GET') {
-    console.log('GET');
     const raw = await db.collection('bobbles').find({}).toArray();
 
     const data = await JSON.parse(JSON.stringify(raw));
@@ -17,8 +14,6 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    console.log('POST');
-
     const response = await db.collection('bobbles').insertOne(req.body);
 
     res.json(response);
