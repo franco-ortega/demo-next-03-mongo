@@ -9,7 +9,7 @@ const Bobbles = () => {
     console.log('bobble added!!');
 
     const data = await fetch(
-      `https://demo-next-03-mongo.vercel.app/bobbles?shape=${shape}&color=${color}`
+      `https://demo-next-03-mongo.vercel.app/api/bobbles?shape=${shape}&color=${color}`
     );
 
     const response = await data.json();

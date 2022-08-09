@@ -12,5 +12,7 @@ export default async function handler(req, res) {
   console.log(newBobble);
   const response = await db.collection('bobbles').insertOne(newBobble);
 
+  console.log(response);
+
   res.json(response);
 }
