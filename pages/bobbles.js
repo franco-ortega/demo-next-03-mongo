@@ -12,8 +12,8 @@ const Bobbles = () => {
       `https://demo-next-03-mongo.vercel.app/api/bobbles?shape=${shape}&color=${color}`
     );
 
-    const response = await data.json();
-    console.log(response);
+    // const response = await data.json();
+    // console.log(response);
   };
 
   return (
