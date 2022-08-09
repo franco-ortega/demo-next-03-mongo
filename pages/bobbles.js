@@ -13,11 +13,8 @@ const Bobbles = ({ data }) => {
 
   const onBobbleSubmit = async (e) => {
     e.preventDefault();
-    console.log('bobble added!!');
 
-    // await fetch(`${NEXT_PUBLIC_API_URL}/bobbles?shape=${shape}&color=${color}`);
-
-    await fetch(`${NEXT_PUBLIC_API_URL}/bobbleMethods`, {
+    await fetch(`${NEXT_PUBLIC_API_URL}/bobbles`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -25,7 +22,7 @@ const Bobbles = ({ data }) => {
       body: JSON.stringify({ shape, color })
     });
 
-    await fetch(`${NEXT_PUBLIC_API_URL}/getBobbles`)
+    await fetch(`${NEXT_PUBLIC_API_URL}/bobbles`)
       .then((res) => res.json())
       .then((res) => setBobbles(res));
   };
