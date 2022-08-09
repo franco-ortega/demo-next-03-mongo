@@ -5,6 +5,7 @@ const Bobbles = ({ data }) => {
   const [shape, setShape] = useState('');
   const [color, setColor] = useState('');
   const [bobbles, setBobbles] = useState([]);
+  console.log('TEST');
   console.log('DATA: ', data);
 
   useEffect(async () => {
