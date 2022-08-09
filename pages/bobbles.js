@@ -6,7 +6,7 @@ const Bobbles = ({ data }) => {
   const [color, setColor] = useState('');
   const [bobbles, setBobbles] = useState([]);
   console.log('TEST');
-  console.log('DATA: ', data);
+  // console.log('DATA: ', data);
 
   useEffect(async () => {
     await setBobbles(data);
@@ -16,11 +16,11 @@ const Bobbles = ({ data }) => {
     e.preventDefault();
     console.log('bobble added!!');
 
-    const data = await fetch(
+    const res = await fetch(
       `https://demo-next-03-mongo.vercel.app/api/bobbles?shape=${shape}&color=${color}`
     );
 
-    const response = await data.json();
+    const response = await res.json();
     console.log(response);
   };
 
@@ -83,8 +83,6 @@ export async function getServerSideProps(context) {
     const raw = await db.collection('bobbles').find({}).toArray();
 
     const data = await JSON.parse(JSON.stringify(raw));
-
-    console.log({ data });
 
     return {
       props: { isConnected: true, data }
