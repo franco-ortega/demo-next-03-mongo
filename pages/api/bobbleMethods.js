@@ -18,9 +18,8 @@ export default async function handler(req, res) {
 
   if (req.method === 'POST') {
     console.log('POST');
-    const newBobble = req.query;
 
-    const response = await db.collection('bobbles').insertOne(newBobble);
+    const response = await db.collection('bobbles').insertOne(req.body);
 
     res.json(response);
   }
