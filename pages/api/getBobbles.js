@@ -5,7 +5,10 @@ export default async function handler(req, res) {
 
   const db = client.db('demo-next-03-mongo');
 
-  const data = await db.collection('bobbles').find({}).toArray();
+  const raw = await db.collection('bobbles').find({}).toArray();
+
+  const data = await JSON.parse(JSON.stringify(raw));
+  console.log('GET BOBBLE method: ', req.method);
 
   res.json(data);
 }

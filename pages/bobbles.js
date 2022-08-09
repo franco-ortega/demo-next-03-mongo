@@ -1,5 +1,6 @@
 import clientPromise from '../lib/mongodb';
 import { useEffect, useState } from 'react';
+const { NEXT_PUBLIC_API_URL } = process.env;
 
 const Bobbles = ({ data }) => {
   const [shape, setShape] = useState('');
@@ -14,11 +15,9 @@ const Bobbles = ({ data }) => {
     e.preventDefault();
     console.log('bobble added!!');
 
-    await fetch(
-      `https://demo-next-03-mongo.vercel.app/api/bobbles?shape=${shape}&color=${color}`
-    );
+    await fetch(`${NEXT_PUBLIC_API_URL}/bobbles?shape=${shape}&color=${color}`);
 
-    await fetch('https://demo-next-03-mongo.vercel.app/api/getBobbles')
+    await fetch(`${NEXT_PUBLIC_API_URL}/getBobbles`)
       .then((res) => res.json())
       .then((res) => setBobbles(res));
   };
@@ -80,8 +79,6 @@ export async function getServerSideProps(context) {
     const raw = await db.collection('bobbles').find({}).toArray();
 
     const data = await JSON.parse(JSON.stringify(raw));
-
-    console.log({ data });
 
     return {
       props: { isConnected: true, data }
