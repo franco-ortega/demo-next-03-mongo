@@ -15,7 +15,15 @@ const Bobbles = ({ data }) => {
     e.preventDefault();
     console.log('bobble added!!');
 
-    await fetch(`${NEXT_PUBLIC_API_URL}/bobbles?shape=${shape}&color=${color}`);
+    // await fetch(`${NEXT_PUBLIC_API_URL}/bobbles?shape=${shape}&color=${color}`);
+
+    await fetch(`${NEXT_PUBLIC_API_URL}/bobbleMethods`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ shape, color })
+    });
 
     await fetch(`${NEXT_PUBLIC_API_URL}/getBobbles`)
       .then((res) => res.json())
